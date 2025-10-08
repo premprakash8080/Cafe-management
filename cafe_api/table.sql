@@ -7,5 +7,4 @@ create table user(
     status varchar(20),
     role varchar(20),
     UNIQUE (email)
-
-)
+);

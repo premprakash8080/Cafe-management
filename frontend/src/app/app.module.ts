@@ -15,7 +15,7 @@ import { AppHeaderComponent } from './layouts/full/header/header.component';
 import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import {HttpClientModule} from "@angular/common/http";
 import { SignupComponent } from './signup/signup.component';
-import {NgxUiLoaderModule, NgxUiLoaderConfig,SPINNER,PB_DIRECTION} from 'ngx-ui-loader';
+// import {NgxUiLoaderModule, NgxUiLoaderConfig,SPINNER,PB_DIRECTION} from 'ngx-ui-loader';
 
 @NgModule({
   declarations: [

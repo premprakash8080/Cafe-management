@@ -8,11 +8,11 @@
                     <mat-icon>storefront</mat-icon>
                 </span>
             </b>
-            <span fxShow="false" fxShow.gt-xs>
+            <span class="hide-on-mobile">
                 Cafe Management System
             </span>
         </div>
-        <span fxFlex></span>
+        <span class="flex-spacer"></span>
         <app-header></app-header>
     </mat-toolbar>
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">

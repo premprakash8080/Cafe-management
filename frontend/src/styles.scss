@@ -42,3 +42,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-top: 70px !important;
     padding: 20px !important;
 }
+
+// Flexbox utilities (replacing Angular Flex Layout)
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.hide-on-mobile {
+  display: inline;
+}
+
+@media (max-width: 599px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}

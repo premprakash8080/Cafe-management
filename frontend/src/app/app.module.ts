@@ -8,7 +8,6 @@ import { MaterialModule } from './shared/material-module';
 import { HomeComponent } from './home/home.component';
 import { BestSellerComponent } from './best-seller/best-seller.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './shared/shared.module';
 import { FullComponent } from './layouts/full/full.component';
 import { AppHeaderComponent } from './layouts/full/header/header.component';
@@ -32,6 +31,5 @@ import { SignupComponent } from './signup/signup.component';
         FormsModule,
         ReactiveFormsModule,
         MaterialModule,
-        FlexLayoutModule,
         SharedModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

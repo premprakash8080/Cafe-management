@@ -10,33 +10,41 @@ File: scss
 $bodyfont: 'Poppins', sans-serif;
 $headingfont: 'Poppins', sans-serif;
 
-@import '@angular/material/theming';
+// Modern Angular Material imports
+@use '@angular/material' as mat;
+@use 'sass:map';
 
-/*Material Theme Colors*/
+// Material Theme Colors
+$primary: mat.m2-define-palette(mat.$m2-red-palette, 600);
+$accent: mat.m2-define-palette(mat.$m2-red-palette, 500);
+$warn: mat.m2-define-palette(mat.$m2-red-palette, 500);
 
-$primary: mat-palette($mat-red, 600);
-$accent: mat-palette($mat-red, 500);
-$warn: mat-palette($mat-red, 500);
-$theme: mat-light-theme($primary, $accent, $warn);
-$background: map-get($theme, background);
-$foreground: map-get($theme, foreground);
+$theme: mat.m2-define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn
+  )
+));
 
-@include mat-core();
+$background: map.get($theme, background);
+$foreground: map.get($theme, foreground);
 
-$custom-typography: mat-typography-config(
+// Core styles & typography
+@include mat.core();
+
+$custom-typography: mat.m2-define-typography-config(
   $font-family: 'Poppins, sans-serif'
 );
 
-// Override the typography in the core CSS.
-@include mat-core($custom-typography);
+// Apply default theme
+@include mat.all-component-themes($theme);
+@include mat.typography-hierarchy($custom-typography);
 
-// Default Theme
-@include angular-material-theme($theme);
+// Dark Theme (if needed, define separately)
+// $dark-theme: mat.define-dark-theme(...);
 
-// Dark Theme
-
-/*Theme Colors*/
-
+// Custom UI Variables
 $topbar: #2196f3;
 $sidebar: #fff;
 $sidebar-white: #e5edef;
@@ -54,13 +62,12 @@ $themecolor: #1e88e5;
 $themecolor-alt: #e53935;
 $themecolor-dark: #028ee1;
 
-/*bootstrap Color*/
+/* Bootstrap Colors */
 $danger: #fc4b6c;
 $success: #26c6da;
 $warning: #ffb22b;
 $primary: #7460ee;
 $info: #1e88e5;
-// $inverse: #2f3d4a;
 $inverse: white;
 $muted: #99abb4;
 $dark: #263238;
@@ -68,7 +75,7 @@ $light: #f2f4f8;
 $extra-light: #ebf3f5;
 $secondary: #727b84;
 
-/*Light colors*/
+/* Light Colors */
 $light-danger: #f9e7eb;
 $light-success: #e8fdf8;
 $light-warning: #fff8ec;
@@ -77,6 +84,7 @@ $light-info: #e3f3fd;
 $light-inverse: #f6f6f6;
 $light-megna: #e0f2f4;
 
+/* Dark Colors */
 $danger-dark: #e6294b;
 $success-dark: #1eacbe;
 $warning-dark: #e9ab2e;
@@ -86,7 +94,7 @@ $red-dark: #d61f1f;
 $inverse-dark: #232a37;
 $dark-transparent: rgba(0, 0, 0, 0.05);
 
-/*Normal Color*/
+/* Normal Colors */
 $white: #ffffff;
 $red: #fb3a3a;
 $yellow: #a0aec4;
@@ -94,7 +102,7 @@ $purple: #7460ee;
 $blue: #02bec9;
 $megna: #00897b;
 
-/*Extra Variable*/
+/* Extra Variables */
 $rgt: right;
 $lft: left;
 $border: rgba(120, 130, 140, 0.13);

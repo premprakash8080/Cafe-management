@@ -3,9 +3,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: []
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: [],
+    standalone: false
 })
 export class AppHeaderComponent {
   role: any;

@@ -4,9 +4,10 @@ import { ChangeDetectorRef, Component, OnDestroy, AfterViewInit } from '@angular
 
 /** @title Responsive sidenav */
 @Component({
-  selector: 'app-full-layout',
-  templateUrl: 'full.component.html',
-  styleUrls: []
+    selector: 'app-full-layout',
+    templateUrl: 'full.component.html',
+    styleUrls: [],
+    standalone: false
 })
 export class FullComponent implements OnDestroy, AfterViewInit {
   mobileQuery: MediaQueryList;

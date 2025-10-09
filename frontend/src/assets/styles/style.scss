@@ -17,13 +17,13 @@ File: scss
  *	8. Custom Templates
  */
 
-@import 'variable';
+@use 'variable' as *;
 
-@import 'spinner';
-@import 'app';
-@import 'header';
-@import 'pages';
-@import 'sidebar';
-@import 'responsive';
+@forward 'spinner';
+@forward 'app';
+@forward 'header';
+@forward 'pages';
+@forward 'sidebar';
+@forward 'responsive';
 
-@import "../styles/icons/material-design-iconic-font/css/materialdesignicons.min.css";
+@import url("../styles/icons/material-design-iconic-font/css/materialdesignicons.min.css");

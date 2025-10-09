@@ -13,32 +13,25 @@ import { SharedModule } from './shared/shared.module';
 import { FullComponent } from './layouts/full/full.component';
 import { AppHeaderComponent } from './layouts/full/header/header.component';
 import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
-import {HttpClientModule} from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { SignupComponent } from './signup/signup.component';
 // import {NgxUiLoaderModule, NgxUiLoaderConfig,SPINNER,PB_DIRECTION} from 'ngx-ui-loader';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    BestSellerComponent,
-    FullComponent,
-    AppHeaderComponent,
-    AppSidebarComponent,
-    SignupComponent
-   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    FlexLayoutModule,
-    SharedModule,
-    HttpClientModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        BestSellerComponent,
+        FullComponent,
+        AppHeaderComponent,
+        AppSidebarComponent,
+        SignupComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        FlexLayoutModule,
+        SharedModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

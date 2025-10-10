@@ -11,9 +11,18 @@ export class UserService {
   constructor( private httpClient: HttpClient) { }
 
   signup(data:any){
-    return this.httpClient.post(this.url+"" +
-      "user/signup",data,{
+    console.log(this.url+""+"/user/signup");
+    console.log(data);
+    return this.httpClient.post(
+      this.url+"/user/signup",data,{
       headers:new HttpHeaders().set('Content-Type', 'application/json')
     })
+  }
+
+  forgotPassword(data:any){
+    return this.httpClient.post(
+      this.url+"/user/forgotpassword",data,{
+        headers:new HttpHeaders().set('Content-Type', 'application/json')
+      })
   }
 }

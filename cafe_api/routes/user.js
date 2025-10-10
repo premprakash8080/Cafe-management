@@ -65,8 +65,47 @@ router.post("/login", (req, res) => {
   });
 });
 
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth:{
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD
+  }
+})
 
+router.post('/forgotPassword',(req,res)=>{
+  const user = req.body;
+  query = "select email,password from user where email=?";
+  connection.query(query,[user.email],(err,results)=>{
+    if(!err){
+      if(results.length <= 0)
+      {
+        return res.status(200).json({message:"Password sent successfully to your email."});
+      }
+      else{
+        var mailOptions = {
+          from: process.env.EMAIL,
+          to: results[0].email,
+          subject: 'Password by Cafe Management System',
+          html: '<p><b>Your Login details for Cafe Management System</b><br>Email: </b>'+results[0].email+'<br><b>Password: </b>'+results[0].password+'<br><a href="http://localhost:4200/">Click Here to Login</p>'
+        };
+        transporter.sendMail(mailOptions,function(error,info){
+          if(error){
+            console.log(error);
+          }
+          else{
+            console.log('Email Sent: '+info.response);
+          }
+        });
+      return res.status(200).json({message:"Password sent successfully to your email."});
 
+      }
+    }
+    else{
+      return res.status(500).json(err);
+    }
+  })
+})
 
 
 module.exports = router;

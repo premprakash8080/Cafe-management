@@ -1,12 +1,12 @@
-create table user(
-    id int primary key AUTO_INCREMENT,
-    name varchar(250),
-    contactNumber varcher(250),
-    email varchar(50),
-    password varchar(250),
-    status varchar(20),
-    role varchar(20),
-    UNIQUE (email)
+CREATE TABLE user (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(250) NOT NULL,
+    contactNumber VARCHAR(250),
+    email VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(250) NOT NULL,
+    status VARCHAR(20) DEFAULT 'false',
+    role VARCHAR(20) DEFAULT 'user'
 );
 
-insert into user(name,contactNumber,email,password,status,role) values('Admin','1234567890','cafe@gmail.com','admin','true','admin');
+INSERT INTO user (name, contactNumber, email, password, status, role)
+VALUES ('Admin', '1234567890', 'cafe@gmail.com', 'admin', 'true', 'admin');

@@ -107,5 +107,8 @@ router.post('/forgotPassword',(req,res)=>{
   })
 })
 
+router.get('/get',(req,res)=>{
+  var query ="select id,name,email,contactNumber,status from user where role='user'"
+})
 
 module.exports = router;

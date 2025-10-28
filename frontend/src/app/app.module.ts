@@ -16,6 +16,7 @@ import { SignupComponent } from './signup/signup.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
+import { ChangePasswordComponent } from './material-component/dialog/change-password/change-password.component';
 import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor';
 import {
   NgxUiLoaderModule,
@@ -44,6 +45,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AppHeaderComponent,
     AppSidebarComponent,
     SignupComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

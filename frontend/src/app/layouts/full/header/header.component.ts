@@ -8,6 +8,7 @@ import { ConfirmationComponent } from 'src/app/material-component/dialog/confirm
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: [],
+  standalone: false
 })
 export class AppHeaderComponent {
   role: any;

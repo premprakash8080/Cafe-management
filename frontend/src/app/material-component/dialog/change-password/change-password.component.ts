@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef,MatDialogModule } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UserService } from 'src/app/services/user.service';
 import { GlobalConstants } from 'src/app/shared/global-constants';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
-  imports: [ MatDialogModule, MatFormFieldModule, FormsModule, ReactiveFormsModule],
   styleUrls: ['./change-password.component.scss'],
+  standalone: false
 })
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm: any = FormGroup;

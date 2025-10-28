@@ -47,23 +47,28 @@ export class SignupComponent implements OnInit {
       contactNumber: formData.contactNumber,
       password: formData.password,
     }
-    console.log(data);
-    this.userService.signup(data).subscribe((response: any) => {
-      this.ngxService.stop();
-      this.dialogRef.close();
-      this.responseMessage = response.message;
-      this.snackbarSerive.openSnackBar(this.responseMessage, "");
-      this.router.navigate([ '/' ]);
-    }, (error) => {
-      this.ngxService.stop();
-      if (error.error?.message) {
-        this.responseMessage = error.error.message;
-      } else {
-        this.responseMessage = GlobalConstants.genricError;
+    console.log('Signup data:', data);
+    this.userService.signup(data).subscribe({
+      next: (response: any) => {
+        this.ngxService.stop();
+        this.dialogRef.close();
+        this.responseMessage = response.message || 'Signup successful';
+        this.snackbarSerive.openSnackBar(this.responseMessage, "");
+        this.router.navigate([ '/' ]);
+      },
+      error: (error) => {
+        this.ngxService.stop();
+        console.error('Signup error:', error);
+        if (error.error?.message) {
+          this.responseMessage = error.error.message;
+        } else if (error.message) {
+          this.responseMessage = error.message;
+        } else {
+          this.responseMessage = GlobalConstants.genricError;
+        }
+        this.snackbarSerive.openSnackBar(this.responseMessage, GlobalConstants.error);
       }
-      this.snackbarSerive.openSnackBar(this.responseMessage, GlobalConstants.error);
-    }
-    )
+    })
   }
 
 }

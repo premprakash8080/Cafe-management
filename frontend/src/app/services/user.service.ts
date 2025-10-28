@@ -11,7 +11,7 @@ export class UserService {
   constructor( private httpClient: HttpClient) { }
 
   signup(data:any){
-    console.log(this.url+""+"/user/signup");
+    console.log(this.url+"/user/signup");
     console.log(data);
     return this.httpClient.post(
       this.url+"/user/signup",data,{
@@ -29,6 +29,13 @@ export class UserService {
   login(data:any){
     return this.httpClient.post(
       this.url+"/user/login",data,{
+        headers:new HttpHeaders().set('Content-Type', 'application/json')
+      })
+  }
+
+  checkToken(){
+    return this.httpClient.get(
+      this.url+"/user/checkToken",{
         headers:new HttpHeaders().set('Content-Type', 'application/json')
       })
   }

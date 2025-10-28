@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
-import { Router } from "@angular/router";
-import { UserService } from "../services/user.service";
-import { SnackbarService } from "../services/snackbar.service";
-import { MatDialogRef, MatDialogModule } from "@angular/material/dialog";
-import { NgxUiLoaderService } from "ngx-ui-loader";
-import { GlobalConstants } from "../shared/global-constants";
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SnackbarService } from '../services/snackbar.service';
+import { UserService } from '../services/user.service';
+import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { GlobalConstants } from '../shared/global-constants';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
-
-
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -28,12 +27,9 @@ import { CommonModule } from '@angular/common';
     MatIconModule
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-  standalone: true
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
-
   loginForm: any = FormGroup;
   responseMessage: any;
 
@@ -41,16 +37,19 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private snackbarSerive: SnackbarService,
-    private dialogRef: MatDialogRef<LoginComponent>,
-    private ngxService: NgxUiLoaderService
-  ) { }
+    private snackbarService: SnackbarService,
+    private ngxService: NgxUiLoaderService,
+    private dialogRef: MatDialogRef<LoginComponent>
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: [ null, [ Validators.required, Validators.pattern(GlobalConstants.emailRegex) ] ],
-      password: [ null, [ Validators.required ] ]
-    })
+      email: [
+        null,
+        [Validators.required, Validators.pattern(GlobalConstants.emailRegex)],
+      ],
+      password: [null, Validators.required],
+    });
   }
 
   handleSubmit() {
@@ -58,33 +57,29 @@ export class LoginComponent implements OnInit {
     var formData = this.loginForm.value;
     var data = {
       email: formData.email,
-      password: formData.password
-    }
-    console.log('Login data:', data);
-    this.userService.login(data).subscribe({
-      next: (response: any) => {
+      password: formData.password,
+    };
+    this.userService.login(data).subscribe(
+      (response: any) => {
         this.ngxService.stop();
         this.dialogRef.close();
-        if (response.token) {
-          localStorage.setItem('token', response.token);
-        }
-        this.responseMessage = response.message || 'Login successful';
-        this.snackbarSerive.openSnackBar(this.responseMessage, "");
-        this.router.navigate([ '/' ]);
+        localStorage.setItem('token', response.token);
+        this.responseMessage = response?.message;
+        this.snackbarService.openSnackBar(this.responseMessage, '');
+        this.router.navigate(['/cafeteria/dashboard']);
       },
-      error: (error) => {
+      (error) => {
         this.ngxService.stop();
-        console.error('Login error:', error);
         if (error.error?.message) {
-          this.responseMessage = error.error.message;
-        } else if (error.message) {
-          this.responseMessage = error.message;
+          this.responseMessage = error.error?.message;
         } else {
-          this.responseMessage = GlobalConstants.genricError;
+          this.responseMessage = GlobalConstants.genericError;
         }
-        this.snackbarSerive.openSnackBar(this.responseMessage, GlobalConstants.error);
+        this.snackbarService.openSnackBar(
+          this.responseMessage,
+          GlobalConstants.error
+        );
       }
-    })
+    );
   }
-
 }

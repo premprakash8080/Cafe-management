@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
         } else if (error.message) {
           this.responseMessage = error.message;
         } else {
-          this.responseMessage = GlobalConstants.genricError;
+          this.responseMessage = GlobalConstants.genericError;
         }
         this.snackbarSerive.openSnackBar(this.responseMessage, GlobalConstants.error);
       }

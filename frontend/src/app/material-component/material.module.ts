@@ -16,10 +16,10 @@ import { ManageCategoryComponent } from './manage-category/manage-category.compo
 import { CategoryComponent } from './dialog/category/category.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
 import { ProductComponent } from './dialog/product/product.component';
-// import { ManageOrderComponent } from './manage-order/manage-order.component';
-// import { ViewBillComponent } from './view-bill/view-bill.component';
-// import { ManageUserComponent } from './manage-user/manage-user.component';
-// import { UserComponent } from './dialog/user/user.component';
+import { ManageOrderComponent } from './manage-order/manage-order.component';
+import { ViewBillComponent } from './view-bill/view-bill.component';
+import { ManageUserComponent } from './manage-user/manage-user.component';
+import { UserComponent } from './dialog/user/user.component';
 
 @NgModule({
   imports: [
@@ -41,10 +41,10 @@ import { ProductComponent } from './dialog/product/product.component';
     CategoryComponent,
     ManageProductComponent,
     ProductComponent,
-    // ManageOrderComponent,
-    // ViewBillComponent,
-    // ManageUserComponent,
-    // UserComponent    
+    ManageOrderComponent,
+    ViewBillComponent,
+    ManageUserComponent,
+    UserComponent    
   ]
 })
 export class MaterialComponentsModule {}

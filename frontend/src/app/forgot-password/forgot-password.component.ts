@@ -56,22 +56,28 @@ export class ForgotPasswordComponent {
     var data={
       email:formData.email
     }
-    this.userService.forgotPassword(data).subscribe((response:any)=>{
-      this.ngxSerive.stop();
-      this.responseMessage=response?.message;
-      this.dialogRef.close();
-      this.snaclbarService.openSnackBar(this.responseMessage,"");
-    },(error)=>{
-      this.ngxSerive.stop();
-      if(error.error?.message){
-        this.responseMessage=error.error?.message;
-      }else{
-        this.responseMessage=GlobalConstants.genricError;
+    console.log('Forgot password data:', data);
+    this.userService.forgotPassword(data).subscribe({
+      next: (response:any)=>{
+        this.ngxSerive.stop();
+        this.responseMessage=response?.message || 'Password reset email sent';
+        this.dialogRef.close();
+        this.snaclbarService.openSnackBar(this.responseMessage,"");
+      },
+      error: (error)=>{
+        this.ngxSerive.stop();
+        console.error('Forgot password error:', error);
+        if(error.error?.message){
+          this.responseMessage=error.error?.message;
+        }else if(error.message){
+          this.responseMessage=error.message;
+        }else{
+          this.responseMessage=GlobalConstants.genricError;
+        }
+        this.snaclbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
       }
-      this.snaclbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
-    }
-  
-  )}
+    })
+  }
 
 
 }

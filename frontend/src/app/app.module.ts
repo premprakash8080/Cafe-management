@@ -14,6 +14,8 @@ import { AppHeaderComponent } from './layouts/full/header/header.component';
 import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import {NgxUiLoaderModule, NgxUiLoaderConfig,SPINNER,PB_DIRECTION} from 'ngx-ui-loader';
 
 const ngxUiLoaderConfig:NgxUiLoaderConfig={
@@ -46,7 +48,9 @@ const ngxUiLoaderConfig:NgxUiLoaderConfig={
         ReactiveFormsModule,
         MaterialModule,
         SharedModule,
-        NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+        NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+        LoginComponent,
+        ForgotPasswordComponent
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

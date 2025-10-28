@@ -30,19 +30,21 @@ import { UserComponent } from './dialog/user/user.component';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    CdkTableModule
+    CdkTableModule,
+    // Import standalone components
+    ViewBillComponent,
+    ManageProductComponent
   ],
   providers: [],
   declarations: [
-    // ViewBillProductsComponent,
+    // Non-standalone components
+    ViewBillProductsComponent,
     ConfirmationComponent,
     ChangePasswordComponent,
     ManageCategoryComponent,
     CategoryComponent,
-    ManageProductComponent,
     ProductComponent,
     ManageOrderComponent,
-    ViewBillComponent,
     ManageUserComponent,
     UserComponent    
   ]

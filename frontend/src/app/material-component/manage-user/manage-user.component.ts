@@ -13,6 +13,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
   selector: 'app-manage-user',
   templateUrl: './manage-user.component.html',
   styleUrls: ['./manage-user.component.scss'],
+  standalone: false
 })
 export class ManageUserComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'contactNumber', 'status'];

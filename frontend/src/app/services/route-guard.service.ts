@@ -44,7 +44,7 @@ export class RouteGuardService {
         GlobalConstants.unauthorized,
         GlobalConstants.error
       );
-      this.router.navigate(['/cafeteria/dashboard']);
+      this.router.navigate(['/cafe/dashboard']);
       return false;
     } else {
       this.router.navigate(['/']);

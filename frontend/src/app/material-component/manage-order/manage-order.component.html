@@ -63,7 +63,7 @@
             <div fxLayout="row wrap">
                 <mat-form-field appearance="fill" fxFlex>
                     <mat-label>Category</mat-label>
-                    <mat-select formControlName="category" (selectionChange)="getProductsByCategory($event.value)">
+                    <mat-select formControlName="category" (selectionChange)="getProductsByCategory($event)">
                         <mat-option *ngFor="let category of categories"
                             [value]="category">{{category.name}}</mat-option>
                     </mat-select>
@@ -71,7 +71,7 @@
 
                 <mat-form-field appearance="fill" fxFlex>
                     <mat-label>Product</mat-label>
-                    <mat-select formControlName="product" (selectionChange)="getProductsDetails($event.value)">
+                    <mat-select formControlName="product" (selectionChange)="getProductsDetails($event)">
                         <mat-option *ngFor="let product of products" [value]="product">{{product.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>

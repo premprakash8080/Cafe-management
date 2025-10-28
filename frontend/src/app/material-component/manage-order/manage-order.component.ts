@@ -12,6 +12,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
   selector: 'app-manage-order',
   templateUrl: './manage-order.component.html',
   styleUrls: ['./manage-order.component.scss'],
+  standalone: false
 })
 export class ManageOrderComponent implements OnInit {
   displayedColumns: string[] = [
@@ -88,7 +89,8 @@ export class ManageOrderComponent implements OnInit {
     );
   }
 
-  getProductsByCategory(value: any) {
+  getProductsByCategory(event: any) {
+    const value = event.value;
     this.productService.getProductsByCategory(value.id).subscribe(
       (response: any) => {
         this.products = response;
@@ -111,7 +113,8 @@ export class ManageOrderComponent implements OnInit {
     );
   }
 
-  getProductsDetails(value: any) {
+  getProductsDetails(event: any) {
+    const value = event.value;
     this.productService.getById(value.id).subscribe(
       (response: any) => {
         this.price = response.price;

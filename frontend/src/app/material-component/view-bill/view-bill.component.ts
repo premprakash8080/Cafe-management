@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { BillService } from 'src/app/services/bill.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -9,11 +9,28 @@ import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bil
 import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
 import { saveAs } from 'file-saver';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-view-bill',
   templateUrl: './view-bill.component.html',
   styleUrls: ['./view-bill.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatTableModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
+  ]
 })
 export class ViewBillComponent implements OnInit {
   displayedColumns: string[] = [

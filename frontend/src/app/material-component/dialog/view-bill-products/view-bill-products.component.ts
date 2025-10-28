@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   selector: 'app-view-bill-products',
   templateUrl: './view-bill-products.component.html',
   styleUrls: ['./view-bill-products.component.scss'],
+  standalone: false
 })
 export class ViewBillProductsComponent implements OnInit {
   displayedColumns: string[] = [

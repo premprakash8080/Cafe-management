@@ -10,6 +10,7 @@ import { GlobalConstants } from 'src/app/shared/global-constants';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
+  standalone: false
 })
 export class UserComponent implements OnInit {
   onAddCategory = new EventEmitter();

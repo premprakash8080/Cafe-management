@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -8,11 +8,30 @@ import { GlobalConstants } from 'src/app/shared/global-constants';
 import { ProductComponent } from '../dialog/product/product.component';
 import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-manage-product',
   templateUrl: './manage-product.component.html',
   styleUrls: ['./manage-product.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatTableModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSlideToggleModule
+  ]
 })
 export class ManageProductComponent implements OnInit {
   displayedColumns: string[] = [
@@ -139,10 +158,10 @@ export class ManageProductComponent implements OnInit {
     );
   }
 
-  onChange(status: any, id: any) {
+  onChange(event: any, id: any) {
     this.ngxService.start();
     var data = {
-      status: status.toString(),
+      status: event.checked.toString(),
       id: id,
     };
     this.productService.updateStatus(data).subscribe(

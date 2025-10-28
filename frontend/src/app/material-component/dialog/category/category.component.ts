@@ -10,6 +10,7 @@ import { GlobalConstants } from 'src/app/shared/global-constants';
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
+  standalone: false
 })
 export class CategoryComponent implements OnInit {
   onAddCategory = new EventEmitter();

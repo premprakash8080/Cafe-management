@@ -12,6 +12,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
   selector: 'app-manage-category',
   templateUrl: './manage-category.component.html',
   styleUrls: ['./manage-category.component.scss'],
+  standalone: false
 })
 export class ManageCategoryComponent implements OnInit {
   displayedColumns: string[] = ['name', 'edit'];

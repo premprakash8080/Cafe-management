@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', response.token);
         this.responseMessage = response?.message;
         this.snackbarService.openSnackBar(this.responseMessage, '');
-        this.router.navigate(['/cafeteria/dashboard']);
+        this.router.navigate(['/cafe/dashboard']);
       },
       (error) => {
         this.ngxService.stop();

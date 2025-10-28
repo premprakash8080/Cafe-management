@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA,MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirmation',
   templateUrl: './confirmation.component.html',
-  imports: [ MatDialogModule],
   styleUrls: ['./confirmation.component.scss'],
+  standalone: false
 })
 export class ConfirmationComponent implements OnInit {
   onEmitStatusChange = new EventEmitter();

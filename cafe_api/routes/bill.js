@@ -92,4 +92,75 @@ router.get('/getPdf/:uuid', (req, res) => {
     }
 });
 
+
+router.post('/getPdf', auth.authenticateToken, function (req, res) {
+    const orderDetails = req.body;
+    const pdfPath = './genereted_pdf' + orderDetails.uuid + '.pdf';
+    if (fs.existsSync(pdfPath)) {
+        res.contentType("application/pdf");
+        fs.createReadStream(pdfPath).pipe(res);
+    }
+    else {
+        var productDetailsReport = JSON.parse(orderDetails.productDetails);
+        ejs.renderFile(
+            path.join(__dirname, '', 'report.ejs'),
+            {
+                productDetails: productDetailsReport,
+                name: orderDetails.name,
+                email: orderDetails.email,
+                contactNumber: orderDetails.contactNumber,
+                paymentMethod: orderDetails.paymentMethod,
+                totalAmount: orderDetails.totalAmount
+            },
+            (err, html) => {
+                if (err) {
+                    console.log("❌ EJS Render Error:", err);
+                    return res.status(500).json(err);
+                } else {
+                    pdf.create(html).toFile(pdfPath, (err, data) => {
+                        if (err) {
+                            console.log("❌ PDF Generation Error:", err);
+                            return res.status(500).json(err);
+                        } else {
+                            res.contentType("application/pdf");
+                            fs.createReadStream(pdfPath).pipe(res);
+                        }
+                    });
+                }
+            }
+        );
+    }
+})
+
+router.get('/getBills', (req, res, next) => {
+    var query = "select * from bill order by id DESC";
+    connection.query(query, (err, results) => {
+        if (!err) {
+            return res.status(200).json(results);
+        } else {
+            return res.status(500).json(err);
+        }
+    });
+});
+
+
+// ✅ DELETE: Delete bill by ID
+router.delete('/delete/:id', (req, res) => {
+    const id = req.params.id;
+
+    const query = "DELETE FROM bill WHERE id = ?";
+    connection.query(query, [id], (err, results) => {
+        if (err) {
+            console.error("❌ SQL Error:", err);
+            return res.status(500).json(err);
+        }
+
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: "Bill not found" });
+        }
+
+        return res.status(200).json({ message: "✅ Bill deleted successfully" });
+    });
+});
+
 module.exports = router;

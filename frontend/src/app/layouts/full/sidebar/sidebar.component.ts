@@ -5,7 +5,7 @@ import { MenuItems } from 'src/app/shared/menu-items';
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
-    styleUrls: [],
+    styleUrls:  ['./sidebar.component.scss' ],
     standalone: false
 })
 export class AppSidebarComponent implements OnDestroy {
@@ -24,6 +24,9 @@ export class AppSidebarComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    const items = this.menuItems.getMenuItem();
+  console.log('Menu items:', items);
   }
 
   ngOnDestroy(): void {
